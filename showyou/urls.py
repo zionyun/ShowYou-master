@@ -10,8 +10,7 @@ urlpatterns = [
     path('',views.index, name = 'index'),
     path('generic/',views.generic, name = 'generic'),
     path('elements/',views.elements, name = 'elements'),
-    path('twitterSelect/',views.twitterSelect, name = 'twitterSelect'),
-    path('instaSelect/',views.instaSelect, name='instaSelect'),
-    path('blogSelect/',views.blogSelect, name='blogSelect'),
-    path('user/',views.user, name='user'),
+    path('twitter/',views.twitter, name = 'twitter'),
+    path('instagram/',views.instagram, name = 'instagram'),
+    path('twitter_user/',views.twitter_user, name = 'twitter_user')
 ]
