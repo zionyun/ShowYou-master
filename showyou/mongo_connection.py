@@ -1,27 +1,48 @@
-
 import pymongo
- 
-client = pymongo.MongoClient(
+import requests
+from bs4 import BeautifulSoup
+import datetime
+import time
+import GetOldTweets3 as got
+from random import uniform
+from tqdm import tqdm
+import pandas as pd
+
+def post_insert(list):
+    client = pymongo.MongoClient(
         "mongodb+srv://showyou:showyou@showyou-aznp8.mongodb.net/test?retryWrites=true&w=majority"
     )
-# db = client.ShowYou
-# collection = db.post
-# collection.insertOne({"post_id": 1, "person_id": 1, "post": "ddd"})
- 
-db = client.get_database('ShowYou')
-collection = db.get_collection('post')
-# collection_list = db.collection_names()
-# print(collection_list)
+    db = client.get_database('ShowYou')
+    collection = db.get_collection('post')
+    collection.drop() 
+    collection.insert(list)
+    # results = collection.find()
+    # for result in results :
+    #     print(result)
+    client.close()
 
-collection.insert_one({"post_id": 3, "person_id": 3, "post": "third"})
+def post_find():
+    client = pymongo.MongoClient(
+        "mongodb+srv://showyou:showyou@showyou-aznp8.mongodb.net/test?retryWrites=true&w=majority"
+    )
+    db = client.get_database('ShowYou')
+    collection = db.get_collection('post')
+    doc = collection.find()
+    # for result in doc :
+    #     print(result)
+    client.close()
+    return doc
 
-results = collection.find()
-for result in results :
-    print(result)
-
-
-# collection.insert({"post_id": 1})
-
-def save(post_id, person_id, post):
-    collection.save({"post_id": post_id, "person_id": person_id, "post": post})
+def textmining_result_insert(list):
+    client = pymongo.MongoClient(
+        "mongodb+srv://showyou:showyou@showyou-aznp8.mongodb.net/test?retryWrites=true&w=majority"
+    )
+    db = client.get_database('ShowYou')
+    collection = db.get_collection('textmining_result')
+    collection.drop() 
+    collection.insert(list)
+    # doc = collection.find()
+    # for result in doc :
+    #     print(result)
+    client.close()
 

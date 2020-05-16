@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from . import twitter_parser
-from . import textmining
+#from . import textmining
 from . import twitter_parser_personal
 from . import twitter_parser_total
 from . import blog_parser_total
@@ -22,7 +22,7 @@ def twitter(request):
         print("있는 경우")
         print('search_keyword = ' + search_keyword)
         twitter_parser_total.parsing(search_keyword,'m')
-        textmining.analysis()
+        #textmining.analysis()
         return render(request, 'showyou/twitter.html')
     else :
         print("없는 경우")
@@ -34,15 +34,36 @@ def twitter_user(request):
         print("있는 경우")
         print('search_keyword = ' + search_keyword)
         twitter_parser_total.parsing(search_keyword,'m')
-        textmining.analysis()
-        return render(request, 'showyou/twitter.html')
+        #textmining.analysis()
+        return render(request, 'showyou/twitter_user.html')
     else :
         print("없는 경우")
-        return render(request, 'showyou/twitter.html') 
+        return render(request, 'showyou/twitter_user.html') 
 
 def instagram(request):
-    return render(request, 'showyou/instagram.html') 
-
+    search_keyword = request.GET.get('search_keyword', '')
+    if search_keyword:
+        print("있는 경우")
+        print('search_keyword = ' + search_keyword)
+        twitter_parser_total.parsing(search_keyword,'m')
+        #textmining.analysis()
+        return render(request, 'showyou/instagram.html')
+    else :
+        print("없는 경우")
+        return render(request, 'showyou/instagram.html')
+    
+def instagram_user(request):
+    search_keyword = request.GET.get('search_keyword', '')
+    if search_keyword:
+        print("있는 경우")
+        print('search_keyword = ' + search_keyword)
+        twitter_parser_total.parsing(search_keyword,'m')
+        #textmining.analysis()
+        return render(request, 'showyou/instagram_user.html')
+    else :
+        print("없는 경우")
+        return render(request, 'showyou/instagram_user.html')
+'''
 def twitterSelect(request):
     search_keyword = request.GET.get('search_keyword', '')
     print('search_keyword = ' + search_keyword)
@@ -52,21 +73,34 @@ def twitterSelect(request):
         twitter_parser_personal.parsing(search_keyword)
         # blog_parser_personal.parsing(search_keyword)
         # blog_parser_total.parsing(search_keyword,'m')
-        textmining.analysis()
+        #textmining.analysis()
         return render(request, 'showyou/twitterSelect.html') 
     else :
         print("없는 경우")
         return render(request, 'showyou/twitterSelect.html') 
-
-def blogSelect(request):
+'''
+def blog(request):
     search_keyword = request.GET.get('search_keyword', '')
     print('search_keyword = ' + search_keyword)
     if search_keyword:
         print("있는 경우")
         # blog_parser_total.parsing(search_keyword,'m')
         blog_parser_personal.parsing(search_keyword)
-        textmining.analysis()
-        return render(request, 'showyou/twitterSelect.html') 
+        #textmining.analysis()
+        return render(request, 'showyou/blog.html') 
     else :
         print("없는 경우")
-        return render(request, 'showyou/twitterSelect.html') 
+        return render(request, 'showyou/blog.html') 
+
+def blog_user(request):
+    search_keyword = request.GET.get('search_keyword', '')
+    print('search_keyword = ' + search_keyword)
+    if search_keyword:
+        print("있는 경우")
+        # blog_parser_total.parsing(search_keyword,'m')
+        blog_parser_personal.parsing(search_keyword)
+        #textmining.analysis()
+        return render(request, 'showyou/blog_user.html') 
+    else :
+        print("없는 경우")
+        return render(request, 'showyou/blog_user.html') 
