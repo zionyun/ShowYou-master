@@ -72,33 +72,44 @@ def parsing(ID):
         # 포스트 단위
         for pidx in range(1, post_count + 1):
             # print('-' * 50)
-            
+
             post = soup.find("table", {"id": "printPost" + str(pidx)})
+
 
             # 내용 찾기---------------------------
 
             content = post.find("div", {"class": "se-component se-text se-l-default"})
-            
-            content_text = content.get_text()
-            
-            if content_text == copy_text:
-                stop = 'yes'
-                break
-            else:
-                copy_text = content_text
+                    
+
+            if (content == None):
                 
-            # if (content == None):
-            #     content = post.find("div", {"id": "postViewArea"})
+                content = post.find("div", {"id": "postViewArea"})
+                
+            
+                if content_text == copy_text:
+                    stop = 'yes'
+                    break
+
+                else:
+                    copy_text = content_text
+                
 
             if (content != None):
-                # Enter 5줄은 하나로
-                csvtext.append([])
-                doc["person_id"]=ID
-                doc["post_id"]=num
-                # csvtext[total_num].append(doc["num"])
-                doc["post"] = content.get_text()
-                # csvtext[total_num].append( doc["content"])      
-                num+=num      
+                content_text = content.get_text()
+                
+                if content_text == copy_text:
+                    stop = 'yes'
+                    break
+
+                else:
+                    copy_text = content_text
+                    csvtext.append([])
+                    doc["num"]=num
+                    num += 1
+                    csvtext[total_num].append(doc["num"])
+                    doc["content"] = content.get_text()
+                    csvtext[total_num].append( doc["content"])
+                
 
             else:
                 doc["content"] = "CONTENT ERROR"
@@ -142,8 +153,3 @@ def parsing(ID):
         print("Error Post : ")
         for i in error_list:
             print(i)
-
-    # 파일 닫기
-    # file.close()
-
-# blog_parsing('mjuhyun98')
