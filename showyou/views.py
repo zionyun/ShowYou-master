@@ -6,6 +6,9 @@ from . import twitter_parser_personal
 from . import twitter_parser_total
 from . import blog_parser_total
 from . import blog_parser_personal
+from . import sentiment_analysis
+from . import wordcloud
+from . import sentiment_analyzer
 # from . import keyword_wordcloud
 
 def index(request):
@@ -25,8 +28,10 @@ def twitter(request):
         print("있는 경우")
         print(date)
         print('search_keyword = ' + search_keyword)
-        twitter_parser_total.parsing(search_keyword,'date')
+        twitter_parser_total.parsing(search_keyword,date)
         textmining.analysis()
+        wordcloud.total_wordcloud()
+        sentiment_analysis.Sentiment_Analysis()
         # keyword_wordcloud.show()
         return render(request, 'showyou/twitter_result.html')
     else :
@@ -40,8 +45,10 @@ def twitter_user(request):
     if search_keyword:
         print("있는 경우")
         print('search_keyword = ' + search_keyword)
-        twitter_parser_total.parsing(search_keyword,'date')
+        twitter_parser_total.parsing(search_keyword,date)
         textmining.analysis()
+        wordcloud.total_wordcloud()
+        sentiment_analysis.Sentiment_Analysis()
         return render(request, 'showyou/twitter_user.html')
     else :
         print("없는 경우")
@@ -55,9 +62,12 @@ def blog(request):
     print('search_keyword = ' + search_keyword)
     if search_keyword:
         print("있는 경우")
-        blog_parser_total.parsing(search_keyword,'date')
+        blog_parser_total.parsing(search_keyword,date)
         # blog_parser_personal.parsing(search_keyword)
         textmining.analysis()
+        sentiment_analysis.Sentiment_Analysis()
+        sentiment_analyzer.Analysis()
+        wordcloud.total_wordcloud()
         return render(request, 'showyou/blog.html') 
     else :
         print("없는 경우")
@@ -71,9 +81,10 @@ def blog_user(request):
     print('search_keyword = ' + search_keyword)
     if search_keyword:
         print("있는 경우")
-        blog_parser_total.parsing(search_keyword,'date')
-        # blog_parser_personal.parsing(search_keyword)
+        blog_parser_total.parsing(search_keyword,date)
         textmining.analysis()
+        wordcloud.total_wordcloud()
+        sentiment_analysis.Sentiment_Analysis()
         return render(request, 'showyou/blog_user.html') 
     else :
         print("없는 경우")
@@ -84,8 +95,10 @@ def instagram(request):
     if search_keyword:
         print("있는 경우")
         print('search_keyword = ' + search_keyword)
-        twitter_parser_total.parsing(search_keyword,'m')
-        #textmining.analysis()
+        twitter_parser_total.parsing(search_keyword,date)
+        textmining.analysis()
+        wordcloud.total_wordcloud()
+        sentiment_analysis.Sentiment_Analysis()
         return render(request, 'showyou/instagram.html')
     else :
         print("없는 경우")
@@ -97,8 +110,10 @@ def instagram_user(request):
     if search_keyword:
         print("있는 경우")
         print('search_keyword = ' + search_keyword)
-        twitter_parser_total.parsing(search_keyword,'m')
-        #textmining.analysis()
+        twitter_parser_total.parsing(search_keyword,date)
+        textmining.analysis()
+        wordcloud.total_wordcloud()
+        sentiment_analysis.Sentiment_Analysis()
         return render(request, 'showyou/instagram_user.html')
     else :
         print("없는 경우")
