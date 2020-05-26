@@ -6,6 +6,8 @@ from . import twitter_parser_personal
 from . import twitter_parser_total
 from . import blog_parser_total
 from . import blog_parser_personal
+from . import instagram_parser_personal
+from . import instagram_parser_total
 from . import sentiment_analysis
 from . import wordcloud
 from . import sentiment_analyzer
@@ -33,7 +35,7 @@ def twitter(request):
         wordcloud.total_wordcloud()
         sentiment_analysis.Sentiment_Analysis()
         # keyword_wordcloud.show()
-        return render(request, 'showyou/twitter_result.html')
+        return render(request, 'showyou/visualization.html', {'keyword':search_keyword})
     else :
         print("없는 경우")
         return render(request, 'showyou/twitter.html') 
@@ -68,7 +70,7 @@ def blog(request):
         sentiment_analysis.Sentiment_Analysis()
         sentiment_analyzer.Analysis()
         wordcloud.total_wordcloud()
-        return render(request, 'showyou/blog.html') 
+        return render(request, 'showyou/visualization.html', {'keyword': search_keyword})
     else :
         print("없는 경우")
         return render(request, 'showyou/blog.html') 
@@ -95,11 +97,11 @@ def instagram(request):
     if search_keyword:
         print("있는 경우")
         print('search_keyword = ' + search_keyword)
-        twitter_parser_total.parsing(search_keyword,date)
+        instagram_parser_total.parsing(search_keyword)
         textmining.analysis()
         wordcloud.total_wordcloud()
         sentiment_analysis.Sentiment_Analysis()
-        return render(request, 'showyou/instagram.html')
+        return render(request, 'showyou/visualization.html')
     else :
         print("없는 경우")
         return render(request, 'showyou/instagram.html')
@@ -110,12 +112,14 @@ def instagram_user(request):
     if search_keyword:
         print("있는 경우")
         print('search_keyword = ' + search_keyword)
-        twitter_parser_total.parsing(search_keyword,date)
+        instagram_parser_personal.parsing(search_keyword)
         textmining.analysis()
         wordcloud.total_wordcloud()
         sentiment_analysis.Sentiment_Analysis()
-        return render(request, 'showyou/instagram_user.html')
+        return render(request, 'showyou/visualization.html')
     else :
         print("없는 경우")
         return render(request, 'showyou/instagram_user.html')
 
+def visualization(request):
+    return render(request, 'showyou/visualization.html')

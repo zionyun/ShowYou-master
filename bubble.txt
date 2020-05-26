@@ -1,0 +1,13 @@
+,_id,person_id,post,post_id
+0,5ecd23163f8d5ef4d1f1338d,bts_army_all_mmber,,1
+1,5ecd23163f8d5ef4d1f1338e,Null,,2
+2,5ecd23163f8d5ef4d1f1338f,Null,,3
+3,5ecd23163f8d5ef4d1f13390,dlwlrmaaath,,4
+4,5ecd23163f8d5ef4d1f13391,k_popersindo,korea koreafakta koreanews dagelankpop kpopersindo_nct k_popersindo kpopersindo faktakpop leejieun kpopersindo_iu iu kpop kpopmeme kpopfact infokpop kpopidol ,5
+5,5ecd23163f8d5ef4d1f13392,Null,李知恩 blueming 집콕시그널 호텔델루나 iu 에잇 eight dlwlrma uaena 이담 러브포엠 no_iu_no_life iuxsuga kpop 이지은 dream 8 아이유슈가 이지금 드림 leejieun iueight iuhomebodysignal 아이유 lovepoem edamentertainment edamproject 아이유에잇 유애나 hoteldelluna ,6
+6,5ecd23163f8d5ef4d1f13393,dorama.livee,,7
+7,5ecd23163f8d5ef4d1f13394,Null,,8
+8,5ecd23163f8d5ef4d1f13395,oyoonseo,,9
+9,5ecd23163f8d5ef4d1f13396,Null,ikon twice blackpink бтсфф🔞 меми мемы2020 btscometoukraine мемиукраїнською ateez kard apink бтс redvelvet власнімеми bts gidle itzy chungha бтсмеми mamamoo straykids iu got7 everglow txt izone укрармі hyuna ,10
+10,5ecd23163f8d5ef4d1f13397,korean_s0ng,,11
+11,5ecd23163f8d5ef4d1f13398,teenagemovies,leeminho top leedongwook фильм jichangwook parkhyungsik songjoongki koreandrama kdrama leejongsuk dorama дорами корея дорамы doram namjoohyuk кимубин korea топ бигбэнг дорам iu newdrama фильмы дорама ,12
