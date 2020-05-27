@@ -13,7 +13,7 @@ from . import mongo_connection
 def parsing(id):
 
     # 트윗 수집 기준 정의
-    tweetCriteria = got.manager.TweetCriteria().setUsername(id).setMaxTweets(20)
+    tweetCriteria = got.manager.TweetCriteria().setUsername(id).setMaxTweets(100)
     
     tweet = got.manager.TweetManager.getTweets(tweetCriteria)
 
@@ -39,5 +39,6 @@ def parsing(id):
     twitter_df = pd.DataFrame( tweet_list, columns = [ "user_name", "text"])
 
     # csv 파일 만들기
-    twitter_df.to_csv("{}_twitter_person.csv".format(id))
-    print("=== {} tweets are successfully saved ===".format(len(tweet_list)))
+    # twitter_df.to_csv("{}_twitter_person.csv".format(id))
+    # print("=== {} tweets are successfully saved ===".format(len(tweet_list)))
+# parsing("@_IUofficial")

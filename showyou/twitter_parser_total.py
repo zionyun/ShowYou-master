@@ -51,7 +51,7 @@ def parsing(keyword,day):
     end_date =(datetime.datetime.strptime(days_range[-1], "%Y-%m-%d") + datetime.timedelta(days=1)).strftime("%Y-%m-%d")# setUntil이 끝을 포함하지 않으므로, day + 1
 
     # 트윗 수집 기준 정의 // 원하는 검색어 설정하기 
-    tweetCriteria = got.manager.TweetCriteria().setQuerySearch(keyword).setSince(start_date).setUntil(end_date).setMaxTweets(20).setEmoji("unicode")
+    tweetCriteria = got.manager.TweetCriteria().setQuerySearch(keyword).setSince(start_date).setUntil(end_date).setMaxTweets(100).setEmoji("unicode")
 
     # 수집 with GetOldTweet3
     print("Collecting data start.. from {} to {}".format(days_range[0], days_range[-1]))
@@ -82,7 +82,9 @@ def parsing(keyword,day):
     twitter_df = pd.DataFrame(tweet_list, columns = ["user_name", "text"])
 
     # csv 파일 만들기
-    twitter_df.to_csv("{}_twitter_data_{}_to_{}.csv".format(keyword,days_range[0], days_range[-1]), index=False)
-    print("=== {} tweets are successfully saved ===".format(len(tweet_list)))
-    df_tweet = pd.read_csv('{}_twitter_data_{}_to_{}.csv'.format(keyword,days_range[0], days_range[-1]))
-    df_tweet.head(10)
+    # twitter_df.to_csv("{}_twitter_data_{}_to_{}.csv".format(keyword,days_range[0], days_range[-1]), index=False)
+    # print("=== {} tweets are successfully saved ===".format(len(tweet_list)))
+    # df_tweet = pd.read_csv('{}_twitter_data_{}_to_{}.csv'.format(keyword,days_range[0], days_range[-1]))
+    # df_tweet.head(10)
+
+# parsing('네일아트','m')

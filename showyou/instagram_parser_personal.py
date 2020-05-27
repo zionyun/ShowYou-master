@@ -23,7 +23,7 @@ def parsing(id):
     url = baseurl + quote_plus(plusUrl) + '/?hl=ko'
 
     driver = webdriver.Chrome(
-        executable_path="/Users/Yoon/Downloads/chromedriver.exe"
+        executable_path="/Users/simhyun-a/Downloads/chromedriver 2"
     )
     driver.get(url)
 
@@ -53,29 +53,42 @@ def parsing(id):
     SCROLL_PAUSE_TIME = 1.0
     reallink = []
 
-    stop = "no"
-
+    stop_signal = 0
+    
+    
     while True:
-        if stop == "yes":
-            break
-
+        
+        
         pageString = driver.page_source
         bsObj = BeautifulSoup(pageString, 'lxml')
 
         for link1 in bsObj.find_all(name='div', attrs={"class":"Nnq7C weEfm"}):
-            if stop == "yes":
+            if stop_signal >0 :
                 break
-            for i in range(3):
-                title = link1.select('a')[i]
-                real = title.attrs['href']
-                reallink.append(real)
-                if len(reallink) > 3:
-                    stop = "yes"
-
+           
+            try: 
+                for i in range(3):
+                  if len(reallink) >= 10:
+                       stop_signal += 1
+                       break
+                  title = link1.select('a')[i]
+                  real = title.attrs['href']
+                  reallink.append(real)
+                  reallink = list(set(reallink))
+                      
+            except IndexError:
+               print('Hello Error!')
+        
+        if stop_signal > 0 :
+            break
+            
+        #과거의 높이
+        
         last_height = driver.execute_script('return document.body.scrollHeight')
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(SCROLL_PAUSE_TIME)
         new_height = driver.execute_script("return document.body.scrollHeight")
+
 
         if new_height == last_height:
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -88,8 +101,16 @@ def parsing(id):
                 last_height = new_height
                 continue
 
-    num_of_data = len(reallink)
+    same = []
+    count = 0
 
+ 
+
+    
+
+
+    num_of_data = len(reallink)
+    
 
     print('총 {0}개의 데이터를 수집합니다.'.format(num_of_data))
     csvtext = []
@@ -143,5 +164,3 @@ def parsing(id):
     
 
     driver.close()
-
-# parsing('hyo.zzang__')
