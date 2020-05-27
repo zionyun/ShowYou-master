@@ -37,11 +37,11 @@ def parsing(id):
 
     elem_login = driver.find_element_by_name("username")
     elem_login.clear()
-    elem_login.send_keys('01050464726')
+    elem_login.send_keys('')#username
 
     elem_login = driver.find_element_by_name('password')
     elem_login.clear()
-    elem_login.send_keys('gusdk0220!!')
+    elem_login.send_keys('')#password
 
     time.sleep(1)
 
